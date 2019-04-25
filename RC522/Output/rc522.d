@@ -1,0 +1,12 @@
+..\output\rc522.o: ..\RC522\rc522.c
+..\output\rc522.o: ..\RC522\rc522.h
+..\output\rc522.o: ..\FWlib\inc\stm32f10x_spi.h
+..\output\rc522.o: ..\CMSIS\stm32f10x.h
+..\output\rc522.o: ..\CMSIS\core_cm3.h
+..\output\rc522.o: D:\software\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\rc522.o: ..\CMSIS\system_stm32f10x.h
+..\output\rc522.o: ..\USER\stm32f10x_conf.h
+..\output\rc522.o: ..\FWlib\inc\stm32f10x_gpio.h
+..\output\rc522.o: ..\CMSIS\stm32f10x.h
+..\output\rc522.o: ..\FWlib\inc\stm32f10x_rcc.h
+..\output\rc522.o: ..\FWlib\inc\stm32f10x_usart.h

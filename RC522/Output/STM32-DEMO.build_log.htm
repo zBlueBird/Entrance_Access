@@ -1,0 +1,146 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.12.0.0
+Copyright (C) 2014 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: zhang yuyin, realsil, LIC=9N02Z-JTXR4-PGM7L-0NA2S-3NT04-MCASR
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.12.0.0
+Toolchain Path:  D:\software\Keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.05 (build 41)
+Assembler:       Armasm.exe V5.05 (build 41)
+Linker/Locator:  ArmLink.exe V5.05 (build 41)
+Library Manager: ArmAr.exe V5.05 (build 41)
+Hex Converter:   FromElf.exe V5.05 (build 41)
+CPU DLL:         SARMCM3.DLL V5.12.0.0
+Dialog DLL:      DARMSTM.DLL V1.65.0.0
+    Target DLL: Segger\JL2CM3.dll
+Dialog DLL:      TARMSTM.DLL V1.64.0.0
+ 
+<h2>Project:</h2>
+E:\Projects\Door\UART\USER\STM32-DEMO.uvproj
+Project File Date:  01/06/2019
+
+<h2>Output:</h2>
+Build target 'USART1-DEMO'
+compiling main.c...
+main.c(44): warning:  #177-D: variable "SPI_InitStructure" was declared but never referenced
+  SPI_InitTypeDef SPI_InitStructure;
+main.c(214): warning:  #223-D: function "MFRC522_Init" declared implicitly
+        MFRC522_Init();
+main.c(217): warning:  #223-D: function "MFRC522_Request" declared implicitly
+    if (!MFRC522_Request(PICC_REQIDL, str)) {
+main.c(218): warning:  #223-D: function "MFRC522_Anticoll" declared implicitly
+                        if (!MFRC522_Anticoll(str)) {
+main.c(254): warning:  #128-D: loop is not reachable
+    while (1)
+main.c: 5 warnings, 0 errors
+linking...
+Program Size: Code=6944 RO-data=336 RW-data=144 ZI-data=544  
+FromELF: creating hex file...
+"..\Output\STM32-DEMO.axf" - 0 Error(s), 5 Warning(s).
+Load "..\\Output\\STM32-DEMO.axf" 
+Set JLink Project File to "E:\Projects\Door\UART\USER\JLinkSettings.ini"
+* JLink Info: Device "STM32F103VE" selected (512 KB flash, 64 KB RAM).
+ 
+JLink info:
+------------
+DLL: V4.90 , compiled Jul 28 2014 10:35:20
+Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+Hardware: V8.00
+S/N : 17935099 
+Feature(s) : RDI,FlashDL,FlashBP,JFlash 
+ 
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found Cortex-M3 r1p1, Little endian.
+* JLink Info: FPUnit: 6 code (BP) slots and 2 literal slots
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F103VE
+VTarget = 3.293V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+</pre>
+</body>
+</html>
+ul 28 2014 10:35:20
+Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+Hardware: V8.00
+S/N : 17935099 
+Feature(s) : RDI,FlashDL,FlashBP,JFlash 
+ 
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found Cortex-M3 r1p1, Little endian.
+* JLink Info: FPUnit: 6 code (BP) slots and 2 literal slots
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F103VE
+VTarget = 3.293V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 1, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
+Load "..\\Output\\STM32-DEMO.axf" 
+Set JLink Project File to "E:\Projects\Door\UART\USER\JLinkSettings.ini"
+* JLink Info: Device "STM32F103VE" selected (512 KB flash, 64 KB RAM).
+ 
+JLink info:
+------------
+DLL: V4.90 , compiled Jul 28 2014 10:35:20
+Firmware: J-Link ARM V8 compiled Nov 28 2014 13:44:46
+Hardware: V8.00
+S/N : 17935099 
+Feature(s) : RDI,FlashDL,FlashBP,JFlash 
+ 
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found SWD-DP with ID 0x1BA01477
+* JLink Info: Found Cortex-M3 r1p1, Little endian.
+* JLink Info: FPUnit: 6 code (BP) slots and 2 literal slots
+* JLink Info: TPIU fitted.
+* JLink Info: ETM fitted.
+ROMTableAddr = 0xE00FF003
+ 
+Target info:
+------------
+Device: STM32F103VE
+VTarget = 3.293V
+State of Pins: 
+TCK: 0, TDI: 0, TDO: 0, TMS: 1, TRES: 1, TRST: 1
+Hardware-Breakpoints: 6
+Software-Breakpoints: 8192
+Watchpoints:          4
+JTAG speed: 2000 kHz
+ 
+Full Chip Erase Done.
+Programming Done.
+Verify OK.
+Application running ...
