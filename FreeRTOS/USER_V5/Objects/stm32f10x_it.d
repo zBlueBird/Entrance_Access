@@ -1,0 +1,12 @@
+.\objects\stm32f10x_it.o: stm32f10x_it.c
+.\objects\stm32f10x_it.o: stm32f10x_it.h
+.\objects\stm32f10x_it.o: ..\CMSIS\stm32f10x.h
+.\objects\stm32f10x_it.o: ..\CMSIS\core_cm3.h
+.\objects\stm32f10x_it.o: D:\software\keil525\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f10x_it.o: ..\CMSIS\system_stm32f10x.h
+.\objects\stm32f10x_it.o: ..\USER_V5\stm32f10x_conf.h
+.\objects\stm32f10x_it.o: ..\FWlib\inc\stm32f10x_gpio.h
+.\objects\stm32f10x_it.o: ..\CMSIS\stm32f10x.h
+.\objects\stm32f10x_it.o: ..\FWlib\inc\stm32f10x_rcc.h
+.\objects\stm32f10x_it.o: ..\FWlib\inc\stm32f10x_spi.h
+.\objects\stm32f10x_it.o: ..\FWlib\inc\stm32f10x_usart.h
