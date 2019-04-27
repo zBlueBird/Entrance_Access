@@ -22,14 +22,18 @@
 #include "stm32f10x_gpio.h"
 #include "stm32f10x_exti.h"
 #include "misc.h"
+#include "usart1.h"
+#include "user_task.h"
+
 #include "FreeRTOS.h"
 #include "timers.h"
-#include "usart1.h"
+#include "queue.h"
 
 /*=================================================================
 *               Local Variables
 ==================================================================*/
 static TimerHandle_t xKeyscanTimer = NULL;
+Key_ValueTypeDef key_value = {0};
 uint16_t row_arr[4] = {GPIO_Pin_6, GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9};
 uint16_t column_arr[4] = {GPIO_Pin_12, GPIO_Pin_13, GPIO_Pin_14, GPIO_Pin_15};
 /*=================================================================
@@ -69,11 +73,16 @@ void vKeyscan_debunce_callback(xTimerHandle pxTimer)
     }
     /*2. scan key value*/
     {
-        Key_ValueTypeDef key_value = {0};
+        
         key_value = key_scan();
         printf("[Keyscan] key_value, row_index = %#x, col_index = %#x.\r\n", key_value.row_index,
                key_value.col_index);
     }
+		
+		/*3. send to app msg*/
+		{
+			  app_send_msg(APP_MSG_KEYSCAN, 2, &key_value);
+		}
 
     keyscan_interrupt_config(TRUE);
 }

@@ -15,7 +15,7 @@
 #define  USER_TASK1_PRIO  3    //优先级1
 #define  USER_TASK1_STK   128  //任务堆栈128
 TaskHandle_t  user_task1_handler;  //任务句柄
-void user_task1(void *pvParamters);
+void app_msg_handle_task(void *pvParamters);
 
 #define  USER_TASK2_PRIO  2    //优先级2
 #define  USER_TASK2_STK   128  //任务堆栈128
@@ -46,8 +46,8 @@ int main(void)
 //  while(1)
 //  uart_loop_proc();
 
-    xTaskCreate((TaskFunction_t) user_task1,
-                (const char *) "user_task1",
+    xTaskCreate((TaskFunction_t) app_msg_handle_task,
+                (const char *) "app_msg_handle_task",
                 (uint16_t) USER_TASK1_STK,
                 (void *) NULL,
                 (UBaseType_t) USER_TASK1_PRIO,

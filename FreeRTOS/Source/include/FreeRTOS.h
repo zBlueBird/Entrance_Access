@@ -245,7 +245,7 @@ extern "C" {
 #error If configUSE_TIMERS is set to 1 then configTIMER_TASK_PRIORITY must also be defined.
 #endif /* configTIMER_TASK_PRIORITY */
 
-#define configTIMER_QUEUE_LENGTH 10
+#define configTIMER_QUEUE_LENGTH 5
 #ifndef configTIMER_QUEUE_LENGTH
 #error If configUSE_TIMERS is set to 1 then configTIMER_QUEUE_LENGTH must also be defined.
 #endif /* configTIMER_QUEUE_LENGTH */
