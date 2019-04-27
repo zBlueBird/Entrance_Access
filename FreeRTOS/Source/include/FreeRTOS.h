@@ -240,17 +240,17 @@ extern "C" {
 /* The timers module relies on xTaskGetSchedulerState(). */
 #if configUSE_TIMERS == 1
 
-#define configTIMER_TASK_PRIORITY 2
+#define configTIMER_TASK_PRIORITY 12
 #ifndef configTIMER_TASK_PRIORITY
 #error If configUSE_TIMERS is set to 1 then configTIMER_TASK_PRIORITY must also be defined.
 #endif /* configTIMER_TASK_PRIORITY */
 
-#define configTIMER_QUEUE_LENGTH 20
+#define configTIMER_QUEUE_LENGTH 10
 #ifndef configTIMER_QUEUE_LENGTH
 #error If configUSE_TIMERS is set to 1 then configTIMER_QUEUE_LENGTH must also be defined.
 #endif /* configTIMER_QUEUE_LENGTH */
 
-#define configTIMER_TASK_STACK_DEPTH 10
+#define configTIMER_TASK_STACK_DEPTH 1024
 #ifndef configTIMER_TASK_STACK_DEPTH
 #error If configUSE_TIMERS is set to 1 then configTIMER_TASK_STACK_DEPTH must also be defined.
 #endif /* configTIMER_TASK_STACK_DEPTH */

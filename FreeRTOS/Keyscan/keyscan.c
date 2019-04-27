@@ -25,11 +25,13 @@
 #include "FreeRTOS.h"
 #include "timers.h"
 #include "usart1.h"
+
 /*=================================================================
 *               Local Variables
 ==================================================================*/
 static TimerHandle_t xKeyscanTimer = NULL;
-
+uint16_t row_arr[4] = {GPIO_Pin_6, GPIO_Pin_7, GPIO_Pin_8, GPIO_Pin_9};
+uint16_t column_arr[4] = {GPIO_Pin_12, GPIO_Pin_13, GPIO_Pin_14, GPIO_Pin_15};
 /*=================================================================
 *               Local Function
 ==================================================================*/
@@ -87,14 +89,15 @@ Key_ValueTypeDef key_scan(void)
         GPIO_SetBits(GPIOB, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
 
         /*2. pull low specific column */
-        GPIO_ResetBits(GPIOB, GPIO_Pin_12 << column_index);
+        GPIO_ResetBits(GPIOB, column_arr[column_index]);
 
         /*3. check rows*/
         for (uint8_t row_index = 0; row_index < 4; row_index ++)
         {
             key_value.row_index = row_index;
-            if (Bit_RESET == GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_6 << row_index))
+            if (Bit_RESET == GPIO_ReadInputDataBit(GPIOC, row_arr[row_index]))
             {
+							  GPIO_ResetBits(GPIOB, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
                 return key_value;
             }
         }
@@ -102,6 +105,7 @@ Key_ValueTypeDef key_scan(void)
     key_value.col_index = 0xff;
     key_value.row_index = 0xff;
 
+		GPIO_ResetBits(GPIOB, GPIO_Pin_12 | GPIO_Pin_13 | GPIO_Pin_14 | GPIO_Pin_15);
     return key_value;
 }
 
@@ -150,8 +154,34 @@ void keyscan_interrupt_config(bool flag)
         EXTI_InitStructure.EXTI_LineCmd = DISABLE;
         EXTI_ClearITPendingBit(EXTI_Line6 | EXTI_Line7 | EXTI_Line8 | EXTI_Line9);
     }
+		EXTI_Init(&EXTI_InitStructure);
+		
+		{
+        NVIC_InitTypeDef NVIC_InitStructure;
 
-    EXTI_Init(&EXTI_InitStructure);
+        /* Configure one bit for preemption priority */
+        NVIC_PriorityGroupConfig(NVIC_PriorityGroup_4);
+
+        /* 配置P[A|B|C|D|E]0为中断源 */
+        NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
+        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 6;
+        NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
+
+        /*中断源配置*/        
+			  /*中断源配置*/
+				if (TRUE == flag)
+				{
+						NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;
+				}
+				else
+				{
+						NVIC_InitStructure.NVIC_IRQChannelCmd = DISABLE;
+						EXTI_ClearITPendingBit(EXTI_Line6 | EXTI_Line7 | EXTI_Line8 | EXTI_Line9);
+				}
+        NVIC_Init(&NVIC_InitStructure);
+    }
+
+    
 }
 
 void keyscan_row_gpio_Config(void)
@@ -177,7 +207,7 @@ void keyscan_row_gpio_Config(void)
 
         /* 配置P[A|B|C|D|E]0为中断源 */
         NVIC_InitStructure.NVIC_IRQChannel = EXTI9_5_IRQn;
-        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 2;
+        NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 6;
         NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0;
 
         /*中断源配置*/

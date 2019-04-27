@@ -3,7 +3,7 @@
 
 #include  "FreeRTOS.h"
 
-#define  KEY_SCAN_PERIOD    5//50ms
+#define  KEY_SCAN_PERIOD    30//debunce 30ms
 
 typedef struct
 {
