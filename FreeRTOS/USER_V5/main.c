@@ -10,8 +10,6 @@
 #include  "usart1.h"
 #include  "keyscan.h"
 
-
-
 #define  USER_TASK1_PRIO  3    //优先级1
 #define  USER_TASK1_STK   128  //任务堆栈128
 TaskHandle_t  user_task1_handler;  //任务句柄
