@@ -40,7 +40,7 @@ int main(void)
 
     printf("\r\n [Entrance Access System] \r\n");
 
-    keyscan_module_init();
+
 //  while(1)
 //  uart_loop_proc();
 
