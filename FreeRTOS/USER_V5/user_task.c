@@ -22,10 +22,10 @@ APP_MsgStg g_app_msg = {0};
 xQueueHandle xQueue;
 uint8_t g_key_map[4][4] =
 {
-    {0x00, 0x01, 0x02, 0x0A,},
-    {0x03, 0x04, 0x05, 0x0B,},
-    {0x06, 0x07, 0x08, 0x0C,},
-    {0x09, 0x0D, 0x0E, 0x0F,},
+    {0x03, 0x07, 0x0b, 0x0f,},
+    {0x02, 0x06, 0x0a, 0x0e,},
+    {0x01, 0x05, 0x09, 0x0d,},
+    {0x00, 0x04, 0x08, 0x0c,},
 };
 /*=================================================================
 *               Local Functions
@@ -66,12 +66,12 @@ void app_send_msg(APP_MsgType type, uint8_t len, void *p_msg_value)
 void user_task2(void *pvParamters)
 {
     printf("\r\n RC522 task \r\n");
-    MFRC522_Module_Init();
-    OLED_Init();          //初始化OLED
-    OLED_Clear()    ;
+//    MFRC522_Module_Init();
+//    OLED_Init();          //初始化OLED
+//    OLED_Clear()    ;
     while (1)
     {
-        MFRC522_Handle();
+        //MFRC522_Handle();
     }
 }
 
