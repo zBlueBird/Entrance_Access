@@ -6,6 +6,14 @@
 
 typedef enum
 {
+    ENTER_STATE_IDLE,
+    ENTER_STATE_WAITING_BRUSH_CARD,
+    ENTER_STATE_ALLOWED,
+    ENTER_STATE_BRUSH_CARD_FAILED,
+} sys_state;
+
+typedef enum
+{
     APP_MSG_KEYSCAN = 1,
     APP_MSG_RC522,
     APP_MSG_HCSR505,

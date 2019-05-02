@@ -11,15 +11,20 @@
 #include  "keyscan.h"
 #include  "oled.h"
 
-#define  USER_TASK1_PRIO  3    //优先级1
+#define  USER_TASK1_PRIO  5    //优先级1
 #define  USER_TASK1_STK   128  //任务堆栈128
 TaskHandle_t  user_task1_handler;  //任务句柄
 void app_msg_handle_task(void *pvParamters);
 
-#define  USER_TASK2_PRIO  2    //优先级2
+#define  USER_TASK2_PRIO  3    //优先级2
 #define  USER_TASK2_STK   128  //任务堆栈128
 TaskHandle_t  user_task2_handler;  //任务句柄
 void user_task2(void *pvParamters);
+
+#define  OLED_DISPLAY_PRIO  4    //优先级1
+#define  OLED_DISPLAY_STK   128  //任务堆栈128
+TaskHandle_t  oled_display_handler;  //任务句柄
+void oled_display_task(void *pvParamters);
 
 /**************************************
  * Entrance main
@@ -48,6 +53,13 @@ int main(void)
                 (void *) NULL,
                 (UBaseType_t) USER_TASK2_PRIO,
                 (TaskHandle_t *) &user_task2_handler);
+
+    xTaskCreate((TaskFunction_t) oled_display_task,
+                (const char *) "oled_display_task",
+                (uint16_t) OLED_DISPLAY_STK,
+                (void *) NULL,
+                (UBaseType_t) OLED_DISPLAY_PRIO,
+                (TaskHandle_t *) &oled_display_handler);
 
     vTaskStartScheduler();
 

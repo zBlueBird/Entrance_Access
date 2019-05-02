@@ -6,6 +6,7 @@
 #include "oled.h"
 #include "hcsr505.h"
 #include "relay.h"
+#include "bmp.h"
 
 #include  "FreeRTOS.h"
 #include "task.h"
@@ -21,6 +22,7 @@
 /*=================================================================
 *               Local Variables
 ==================================================================*/
+sys_state gCurrentState = ENTER_STATE_IDLE;
 APP_MsgStg g_app_msg = {0};
 xQueueHandle xQueue;
 uint8_t g_key_map[4][4] =
@@ -74,16 +76,16 @@ void app_msg_handle_task(void *pvParamters)
                        app_msg.msg_len, state);
 
 
-                if (state)
+                if ((state) && (Bit_SET == GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13)))
                 {
-                    OLED_ShowCHinese(30, 0, 0); //元
-                    OLED_ShowCHinese(48, 0, 1); //器
-                    OLED_ShowCHinese(66, 0, 2); //科
-                    OLED_ShowCHinese(84, 0, 3); //技
+//                    OLED_ShowCHinese(30, 0, 0); //元
+//                    OLED_ShowCHinese(48, 0, 1); //器
+//                    OLED_ShowCHinese(66, 0, 2); //科
+//                    OLED_ShowCHinese(84, 0, 3); //技
 
                     RELAY_ACTION(ENTER_ENABLE);
                 }
-                else
+                else if ((!state) && (Bit_RESET == GPIO_ReadInputDataBit(GPIOA, GPIO_Pin_13)))
                 {
                     OLED_Clear();
                     RELAY_ACTION(ENTER_DISABLE);
@@ -105,11 +107,39 @@ void user_task2(void *pvParamters)
 {
     printf("\r\n RC522 task \r\n");
 
-
     while (1)
     {
         MFRC522_Module_Init();
         MFRC522_Handle();
+    }
+}
+
+void oled_display_task(void *pvParamters)
+{
+    printf("\r\n oled_display_task \r\n");
+
+    while (1)
+    {
+        //printf("\r\n oled_display_task \r\n");
+        vTaskDelay(100);
+        switch (gCurrentState)
+        {
+        case ENTER_STATE_IDLE:
+            {
+                OLED_ShowEnter(5, 2, 0); //元
+                OLED_ShowEnter(38, 2, 1); //器
+                OLED_ShowEnter(74, 2, 2); //科
+            }
+            break;
+        case ENTER_STATE_WAITING_BRUSH_CARD:
+            break;
+        case ENTER_STATE_ALLOWED:
+            break;
+        case ENTER_STATE_BRUSH_CARD_FAILED:
+            break;
+        default:
+            break;
+        }
     }
 }
 
