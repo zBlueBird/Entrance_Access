@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER_V5;..\UART;..\Source\include;..\Source;..\Source\portable\RVDS\ARM_CM3;..\FWlib\inc;..\CMSIS;..\LED;..\UART;..\Keyscan;..\RC522;..\OLED</IncludePath>
+              <IncludePath>..\USER_V5;..\UART;..\Source\include;..\Source;..\Source\portable\RVDS\ARM_CM3;..\FWlib\inc;..\CMSIS;..\LED;..\UART;..\Keyscan;..\RC522;..\OLED;..\HCSR505;..\RELAY</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -565,6 +565,26 @@
               <FileName>oled.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\OLED\oled.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>HCSR505</GroupName>
+          <Files>
+            <File>
+              <FileName>hcsr505.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HCSR505\hcsr505.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>RELAY</GroupName>
+          <Files>
+            <File>
+              <FileName>relay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\RELAY\relay.c</FilePath>
             </File>
           </Files>
         </Group>

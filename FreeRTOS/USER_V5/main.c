@@ -9,6 +9,7 @@
 
 #include  "usart1.h"
 #include  "keyscan.h"
+#include  "oled.h"
 
 #define  USER_TASK1_PRIO  3    //优先级1
 #define  USER_TASK1_STK   128  //任务堆栈128
@@ -20,29 +21,19 @@ void app_msg_handle_task(void *pvParamters);
 TaskHandle_t  user_task2_handler;  //任务句柄
 void user_task2(void *pvParamters);
 
-/*
- * 函数名：main
- * 描述  ：主函数
- * 输入  ：无
- * 输出  ：无
- */
+/**************************************
+ * Entrance main
+ *************************************/
 int main(void)
 {
     /* 配置系统时钟为72M */
     SystemInit();
-
-    /* LED 端口初始化 */
-    LED_GPIO_Config();
-
 
     USART1_Config();
     NVIC_Configuration();
 
     printf("\r\n [Entrance Access System] \r\n");
 
-
-//  while(1)
-//  uart_loop_proc();
 
     xTaskCreate((TaskFunction_t) app_msg_handle_task,
                 (const char *) "app_msg_handle_task",
