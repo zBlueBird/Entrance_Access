@@ -27,6 +27,7 @@ typedef struct
 } APP_MsgStg;
 
 
+
 extern void app_send_msg(APP_MsgType type, uint8_t len, void *p_msg_value);
 
 

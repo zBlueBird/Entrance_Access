@@ -3,10 +3,11 @@
 #include "rc522_handle.h"
 #include "rc522.h"
 #include "usart1.h"
-
+#include "user_task.h"
 /*=================================================================
 *               Local Variables
 ==================================================================*/
+uint8_t     access_flag = 0;
 uint8_t     k;
 uint8_t     i;
 uint8_t     j;
@@ -22,7 +23,7 @@ uint8_t     txBuffer[18] = "Card ID: 00000000\r";
 uint8_t     retstr[10];
 uint8_t     rxBuffer[8];
 uint8_t     lastID[4];
-uint8_t     memID[8] = "9C55A1B5";
+uint8_t     memID[8] = "82CF8B1A";
 uint8_t     str[MFRC522_MAX_LEN];
 
 /*=================================================================
@@ -69,13 +70,20 @@ void MFRC522_Handle(void)
 
                 ok = 1;
                 for (i = 0; i < 8; i++)
+                {
                     if (txBuffer[9 + i] != memID[i])
                     {
                         ok = 0;
                     }
-
+                }
             }
-
+        }
+        if (ok == 1)
+        {
+            access_flag = ok;
+            ok = 0;
+            printf("\n[RC522] brush card success\n");
+            app_send_msg(APP_MSG_RC522, sizeof(access_flag), &access_flag);
         }
     }
 }

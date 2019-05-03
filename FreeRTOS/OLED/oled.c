@@ -212,7 +212,7 @@ void OLED_ShowCHinese(uint8_t x, uint8_t y, uint8_t no)
     }
 }
 
-void OLED_ShowEnter(uint8_t x, uint8_t y, uint8_t no)
+void OLED_ShowEnter32x32(uint8_t x, uint8_t y, uint8_t no)
 {
     uint8_t t, adder = 0;
     OLED_Set_Pos(x, y);
@@ -266,6 +266,36 @@ void OLED_ShowEnter(uint8_t x, uint8_t y, uint8_t no)
         OLED_WR_Byte(enter_allowed_arr[8 * no + 7][t], OLED_DATA);
         adder += 1;
     }
+}
+void OLED_ShowEnterIdle16x32(uint8_t x, uint8_t y, uint8_t no)
+{
+    uint8_t t, adder = 0;
+    OLED_Set_Pos(x, y);
+    for (t = 0; t < 16; t++)
+    {
+        OLED_WR_Byte(enter_idle_arr[4 * no][t], OLED_DATA);
+        adder += 1;
+    }
+    OLED_Set_Pos(x, y + 1);
+    for (t = 0; t < 16; t++)
+    {
+        OLED_WR_Byte(enter_idle_arr[4 * no + 1][t], OLED_DATA);
+        adder += 1;
+    }
+
+    OLED_Set_Pos(x, y + 2);
+    for (t = 0; t < 16; t++)
+    {
+        OLED_WR_Byte(enter_idle_arr[4 * no + 2][t], OLED_DATA);
+        adder += 1;
+    }
+    OLED_Set_Pos(x, y + 3);
+    for (t = 0; t < 16; t++)
+    {
+        OLED_WR_Byte(enter_idle_arr[4 * no + 3][t], OLED_DATA);
+        adder += 1;
+    }
+
 }
 /***********功能描述：显示显示BMP图片128×64起始点坐标(x,y),x的范围0～127，y为页的范围0～7*****************/
 /*

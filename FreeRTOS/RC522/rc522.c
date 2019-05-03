@@ -231,16 +231,21 @@ uint8_t MFRC522_Anticoll(uint8_t *serNum)
     uint8_t serNumCheck = 0;
     uint16_t unLen;
 
-    MFRC522_WriteRegister(MFRC522_REG_BIT_FRAMING,
-                          0x00);                                               // TxLastBists = BitFramingReg[2..0]
+    MFRC522_WriteRegister(MFRC522_REG_BIT_FRAMING, 0x00);// TxLastBists = BitFramingReg[2..0]
     serNum[0] = PICC_ANTICOLL;
     serNum[1] = 0x20;
     status = MFRC522_ToCard(PCD_TRANSCEIVE, serNum, 2, serNum, &unLen);
     if (status == MI_OK)
     {
         // Check card serial number
-        for (i = 0; i < 4; i++) { serNumCheck ^= serNum[i]; }
-        if (serNumCheck != serNum[i]) { status = MI_ERR; }
+        for (i = 0; i < 4; i++)
+        {
+            serNumCheck ^= serNum[i];
+        }
+        if (serNumCheck != serNum[i])
+        {
+            status = MI_ERR;
+        }
     }
     return status;
 }
