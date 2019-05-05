@@ -49,14 +49,24 @@ void MFRC522_Handle(void)
             q = 0;
             b = 9;
             en = 1;
-
-            for (i = 0; i < 4; i++) if (lastID[i] != str[i]) { j = 1; }                         // Repeat test
-
-            if (j && en)
+            //printf("\n[RC522 Test] 001\n");
+            for (i = 0; i < 4; i++)
             {
+                if (lastID[i] != str[i])
+                {
+                    j = 1;
+                }                         // Repeat test
+            }
+
+            if (/*j && */en)
+            {
+                //printf("\n[RC522 Test] 002\n");
                 q = 0;
                 en = 0;
-                for (i = 0; i < 4; i++) { lastID[i] = str[i]; }
+                for (i = 0; i < 4; i++)
+                {
+                    lastID[i] = str[i];
+                }
                 //HAL_UART_Transmit(&huart1, text2, 9, 100);
                 for (i = 0; i < 4; i++)
                 {
@@ -83,6 +93,12 @@ void MFRC522_Handle(void)
             access_flag = ok;
             ok = 0;
             printf("\n[RC522] brush card success\n");
+            app_send_msg(APP_MSG_RC522, sizeof(access_flag), &access_flag);
+        }
+        else
+        {
+            access_flag = ok;
+            printf("\n[RC522] brush card failed\n");
             app_send_msg(APP_MSG_RC522, sizeof(access_flag), &access_flag);
         }
     }
