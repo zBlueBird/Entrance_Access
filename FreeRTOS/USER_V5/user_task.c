@@ -276,16 +276,21 @@ void oled_display_task(void *pvParamters)
             {
                 OLED_Clear();
 
-                OLED_ShowCHinese(30, 0, 0); //欢迎光临
-                OLED_ShowCHinese(48, 0, 1); //欢迎光临
-                OLED_ShowCHinese(66, 0, 2); //欢迎光临
-                OLED_ShowCHinese(84, 0, 3); //欢迎光临
+                OLED_ShowCHinese(30, 0, 4); //密码输入
+                OLED_ShowCHinese(48, 0, 5); //密码输入
+                OLED_ShowCHinese(66, 0, 6); //密码输入
+                OLED_ShowCHinese(84, 0, 7); //密码输入
 
-                OLED_ShowEnter32x32(0, 3, 10); //密码输入中
-                OLED_ShowEnter32x32(32, 3, 11); //密码输入中
-                OLED_ShowEnter32x32(64, 3, 12); //密码输入中
-                OLED_ShowEnter32x32(96, 3, 13); //密码输入中
+//                OLED_ShowEnter32x32(0, 3, 10); //密码输入中
+//                OLED_ShowEnter32x32(32, 3, 11); //密码输入中
+//                OLED_ShowEnter32x32(64, 3, 12); //密码输入中
+//                OLED_ShowEnter32x32(96, 3, 13); //密码输入中
                 //OLED_ShowEnter32x32(112, 3, 14); //密码输入中
+
+                for (uint8_t index = 0; index < g_key_input.key_input_index; index ++)
+                {
+                    OLED_ShowEnterIdle16x32(16 + 16 * index, 3, 3);
+                }
             }
             break;
         case ENTER_STATE_KEYCODE_INPUT_ERROR:
