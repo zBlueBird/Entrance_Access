@@ -1,0 +1,12 @@
+.\output\list.o: ..\Source\list.c
+.\output\list.o: D:\software\keil525\ARM\ARMCC\Bin\..\include\stdlib.h
+.\output\list.o: ..\Source\include\FreeRTOS.h
+.\output\list.o: D:\software\keil525\ARM\ARMCC\Bin\..\include\stddef.h
+.\output\list.o: D:\software\keil525\ARM\ARMCC\Bin\..\include\stdint.h
+.\output\list.o: ..\USER\FreeRTOSConfig.h
+.\output\list.o: ..\Source\include\projdefs.h
+.\output\list.o: ..\Source\include\portable.h
+.\output\list.o: ..\Source\include\deprecated_definitions.h
+.\output\list.o: ..\Source\portable\RVDS\ARM_CM3\portmacro.h
+.\output\list.o: ..\Source\include\mpu_wrappers.h
+.\output\list.o: ..\Source\include\list.h
