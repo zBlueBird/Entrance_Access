@@ -8,7 +8,6 @@
 #include  "task.h"
 
 #include  "usart1.h"
-#include  "keyscan.h"
 #include  "oled.h"
 
 #define  USER_TASK1_PRIO  5    //优先级1
@@ -54,17 +53,9 @@ int main(void)
                 (UBaseType_t) USER_TASK2_PRIO,
                 (TaskHandle_t *) &user_task2_handler);
 
-    xTaskCreate((TaskFunction_t) oled_display_task,
-                (const char *) "oled_display_task",
-                (uint16_t) OLED_DISPLAY_STK,
-                (void *) NULL,
-                (UBaseType_t) OLED_DISPLAY_PRIO,
-                (TaskHandle_t *) &oled_display_handler);
-
     vTaskStartScheduler();
 
 
 }
 
 
-/******************* (C) COPYRIGHT 2011 野火嵌入式开发工作室 *****END OF FILE****/
