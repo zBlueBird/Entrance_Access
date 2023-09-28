@@ -215,12 +215,15 @@ void signal_gpio_Config(void)
 		GPIO_EXTILineConfig(GPIO_PortSourceGPIOC, GPIO_PinSource10);
 		GPIO_EXTILineConfig(GPIO_PortSourceGPIOC, GPIO_PinSource11);
 		GPIO_EXTILineConfig(GPIO_PortSourceGPIOC, GPIO_PinSource12);
+		
 		EXTI_InitStructure.EXTI_Line = EXTI_Line2 | EXTI_Line4 | EXTI_Line5 | EXTI_Line10 | EXTI_Line11 | EXTI_Line12;
 		EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;
 		EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising; //raising edge trrigle
 		EXTI_InitStructure.EXTI_LineCmd = ENABLE;
 
 		EXTI_Init(&EXTI_InitStructure);
+		
+		
 	}
 	
 }

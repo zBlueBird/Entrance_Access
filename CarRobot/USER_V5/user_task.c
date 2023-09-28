@@ -9,6 +9,7 @@
 #include "queue.h"
 #include "timers.h"
 #include "signalcheck.h"
+#include "pwm_driver.h"
 
 /*=================================================================
 *               Local Micro
@@ -41,6 +42,17 @@ void app_msg_handle_task(void *pvParamters)
 										
 	signal_module_init();
 	printf("\r\n app_msg_handle_task init");
+	
+	JTAG_Init();	
+	MotorEn_Init(); 
+	Motor_EN();
+
+	vTaskDelay(100);
+
+	PWM_TIM2_Init();                //TIM2_PWM
+    PWM_TIM4_Init();                //TIM4_PWM
+	printf("\r\n pwm init");
+	
     while (1)
     {
         APP_MsgStg app_msg;
@@ -52,6 +64,30 @@ void app_msg_handle_task(void *pvParamters)
 		{
 			printf("\r\n app_msg_handle_task 01 map 0x%x, car state %d", g_signal_map, signal_get_state());
 			
+			if (signal_get_state() == CAR_STATE_STOP)
+			{
+				car_stop();
+			}
+			
+			else if (signal_get_state() == CAR_STATE_FORWARD)
+			{
+				car_forward();
+			}
+			else if (signal_get_state() == CAR_STATE_BACKWARD)
+			{
+				car_backward();
+			}
+			
+			else if (signal_get_state() == CAR_STATE_RIGHT)
+			{
+				printf("car turn right");
+				car_turn_right();
+			}
+			else if (signal_get_state() == CAR_STATE_LEFT)
+			{
+				printf("car turn left");
+				car_turn_left();
+			}
 		}
     }
 }
@@ -66,7 +102,20 @@ void app_send_msg(APP_MsgType type, uint8_t len, void *p_msg_value)
 
 void user_task2(void *pvParamters)
 {
-    printf("\r\n RC522 task \r\n");
+    printf("\r\n RC522 task");
+	
+//	JTAG_Init();	
+//	MotorEn_Init(); 
+//	Motor_EN();
+
+//	vTaskDelay(100);
+
+//	PWM_TIM2_Init();                //TIM2_PWM
+//    PWM_TIM4_Init();                //TIM4_PWM
+//	printf("\r\n pwm init");
+	
+	//car_forward();
+	PWM_TIM1_Init();
 
     while (1)
     {

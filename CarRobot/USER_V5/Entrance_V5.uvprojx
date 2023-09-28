@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_MD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER_V5;..\UART;..\Source\include;..\Source;..\Source\portable\RVDS\ARM_CM3;..\FWlib\inc;..\CMSIS;..\LED;..\UART;..\RC522;..\OLED;..\HCSR505;..\RELAY;..\SignalCheck</IncludePath>
+              <IncludePath>..\USER_V5;..\UART;..\Source\include;..\Source;..\Source\portable\RVDS\ARM_CM3;..\FWlib\inc;..\CMSIS;..\LED;..\UART;..\RC522;..\OLED;..\HCSR505;..\RELAY;..\SignalCheck;..\PWM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -443,6 +443,11 @@
               <FileType>1</FileType>
               <FilePath>..\FWlib\src\stm32f10x_exti.c</FilePath>
             </File>
+            <File>
+              <FileName>stm32f10x_tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\FWlib\src\stm32f10x_tim.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -537,6 +542,16 @@
               <FileName>signalcheck.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\SignalCheck\signalcheck.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Pwm</GroupName>
+          <Files>
+            <File>
+              <FileName>pwm_driver.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\PWM\pwm_driver.c</FilePath>
             </File>
           </Files>
         </Group>
